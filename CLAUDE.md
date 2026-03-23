@@ -13,7 +13,7 @@ Each skill lives under `skills/<category>/<skill-name>/SKILL.md` and contains:
 - **YAML front matter**: `name` and `description` fields
 - **Markdown body**: Workflow instructions, API references, and conventions
 
-When invoking a skill, use the `/<skill-name>` slash command (e.g., `/generate-gitignore`). Agents that support nested skill directories will automatically use the category as a namespace prefix.
+When invoking a skill, use the `/<category>-<skill-name>` slash command (e.g., `/scaffold-generate-gitignore`). The category prefix in the `name` field prevents naming conflicts as the collection grows.
 
 ## Categories
 
@@ -35,5 +35,5 @@ skills/
 
 1. Choose the appropriate category (`workflow`, `scaffold`, or add a new one to the table above)
 2. Create `skills/<category>/<skill-name>/SKILL.md`
-3. Add YAML front matter with `name` and `description`
+3. Add YAML front matter with `name: <category>-<skill-name>` and `description`
 4. Document the workflow in the markdown body

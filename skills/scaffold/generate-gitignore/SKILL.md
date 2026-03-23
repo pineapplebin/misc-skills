@@ -1,5 +1,5 @@
 ---
-name: generate-gitignore
+name: scaffold-generate-gitignore
 description: Generates .gitignore via the toptal gitignore API by detecting project tech stack and merging language, OS, and IDE templates. Supports repo root or a target directory (e.g. monorepo subproject). Use when the user asks to generate, create, or update a gitignore or .gitignore file.
 ---
 

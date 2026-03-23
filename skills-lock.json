@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "grill-me": {
+      "source": "pineapplebin/misc-skills",
+      "sourceType": "github",
+      "computedHash": "332083174b298030a6fc178a7f303eaa247bd1bd04da2d8031be2f7049ca5486"
+    }
+  }
+}
