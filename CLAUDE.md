@@ -26,14 +26,13 @@ When invoking a skill, use the `/<category>-<skill-name>` slash command (e.g., `
 
 ```
 skills/
-└── <category>/
-    └── <skill-name>/
-        └── SKILL.md   # Single file containing front matter + instructions
+└── <category>-<skill-name>/
+    └── SKILL.md   # Single file containing front matter + instructions
 ```
 
 ## Adding a New Skill
 
 1. Choose the appropriate category (`workflow`, `scaffold`, or add a new one to the table above)
-2. Create `skills/<category>/<skill-name>/SKILL.md`
+2. Create `skills/<category>-<skill-name>/SKILL.md`
 3. Add YAML front matter with `name: <category>-<skill-name>` and `description`
 4. Document the workflow in the markdown body
