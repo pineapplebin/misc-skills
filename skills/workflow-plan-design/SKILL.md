@@ -1,6 +1,6 @@
 ---
 name: workflow-plan-design
-description: Generate an implementation plan (PLAN.md) from an existing design's DESCRIPTION.md. This is the second step in the workflow chain: new-design creates DESCRIPTION.md (human contract), plan-design generates PLAN.md (agent contract), and implement-design executes it. Activate via explicit request or as next step after new-design.
+description: "Generate an implementation plan (PLAN.md) from an existing design's DESCRIPTION.md. This is the second step in the workflow chain: new-design creates DESCRIPTION.md (human contract), plan-design generates PLAN.md (agent contract), and implement-design executes it. Activate via explicit request or as next step after new-design."
 ---
 
 ## Instructions

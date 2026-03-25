@@ -1,6 +1,6 @@
 ---
 name: workflow-new-design
-description: Create a new feature design through iterative discussion. Activates when a user wants to design something new, e.g. "我要设计一个 xxx 功能", "我想实现 xxx", "design a feature", "new design". Outputs a human-readable DESCRIPTION.md that serves as a shared contract between human and agent, later refined into PLAN.md by workflow-plan-design and implemented by workflow-implement-design.
+description: "Create a new feature design through iterative discussion. Activates when a user wants to design something new, e.g. '我要设计一个 xxx 功能', '我想实现 xxx', 'design a feature', 'new design'. Outputs a human-readable DESCRIPTION.md that serves as a shared contract between human and agent, later refined into PLAN.md by workflow-plan-design and implemented by workflow-implement-design."
 ---
 
 ## Instructions

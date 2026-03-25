@@ -1,6 +1,6 @@
 ---
 name: workflow-implement-design
-description: Execute the next pending step in a design's implementation plan. This is the third step in the workflow chain: new-design creates DESCRIPTION.md (human contract), plan-design generates PLAN.md (agent contract), and implement-design executes it step by step. Implement-design only modifies Status, Details (file changes), and Notes — never alters the step's Description or structure.
+description: "Execute the next pending step in a design's implementation plan. This is the third step in the workflow chain: new-design creates DESCRIPTION.md (human contract), plan-design generates PLAN.md (agent contract), and implement-design executes it step by step. Implement-design only modifies Status, Details (file changes), and Notes — never alters the step's Description or structure."
 ---
 
 ## Instructions
