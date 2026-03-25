@@ -30,6 +30,10 @@ skills/
     └── SKILL.md   # Single file containing front matter + instructions
 ```
 
+## Git Conventions
+
+Never run `git commit` unless the user explicitly asks to commit. Complete all file changes first, then wait for instruction.
+
 ## Adding a New Skill
 
 1. Choose the appropriate category (`workflow`, `scaffold`, or add a new one to the table above)
