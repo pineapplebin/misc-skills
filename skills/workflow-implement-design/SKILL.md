@@ -9,19 +9,33 @@ description: "Execute the next pending step in a design's implementation plan. T
 
 2. Read `designs/$ARGUMENTS/PLAN.md`. Verify the frontmatter status is `in-progress`. If status is `completed` or `cancelled`, inform the user and stop.
 
+   To abandon a plan, the user can manually set the frontmatter status to `cancelled` in PLAN.md. This prevents the plan from being accidentally re-executed in future runs.
+
 3. Read `designs/$ARGUMENTS/DESCRIPTION.md` for full context on the feature requirements.
 
-4. Find the first step with status `pending` in the PLAN.md. If no pending steps remain, proceed to step 7.
+4. Find the first step with status `pending` in the PLAN.md.
+
+   If no `pending` steps exist but an `in-progress` step is found, the previous execution was interrupted. Inform the user which step is stuck and ask how to proceed:
+   - **(a) Re-execute** — reset the step's status to `pending` in PLAN.md, then execute it from the beginning
+   - **(b) Mark completed** — skip it (use if the user has already done the work manually)
+   - **(c) Abort** — stop and let the user investigate
+
+   If no pending or in-progress steps remain, proceed to step 7.
 
 5. Mark that step's status as `in-progress` in PLAN.md, then execute the work described in that step. Follow the step's description and details closely. If anything is unclear or requires a decision, ask the user before proceeding.
 
-6. After completing the step's work, inform the user what was done and ask them to confirm. Once confirmed, mark the step's status as `completed` in PLAN.md.
+6. Inform the user what was done.
 
-   **If new files were modified or the implementation diverged from the planned approach**, update the step's **Details** to reflect what was actually done. If the divergence is significant (requires changing Description or step structure), stop and inform the user to re-run `/workflow-plan-design` instead of modifying the plan.
+   **If the implementation diverged from the planned approach**, determine the root cause before asking the user to confirm:
+   - **Minor divergence** (different files touched, small approach adjustment): update the step's **Details** to reflect what was actually done, then proceed to confirmation
+   - **Planning issue** (wrong technical approach, missing steps): stop and inform the user to re-run `/workflow-plan-design`
+   - **Design issue** (wrong requirements, missing constraints, fundamental misunderstanding): stop and inform the user to update `DESCRIPTION.md` first, then re-run `/workflow-plan-design`
 
-   **Notes**: If additional context, warnings, or non-file-change notes are needed, append them to the step's **Notes** field. Notes are for implementation observations only — do not use Notes to document file changes (use Details for that).
+   If the step involves testable changes, remind the user to run relevant tests or manually verify before confirming. Once the user confirms, mark the step's status as `completed` in PLAN.md.
 
-   Do NOT automatically proceed to the next step — wait for the user to run `/implement-design` again or ask to continue.
+   If additional context, warnings, or non-file-change observations are needed, append them to the step's **Notes** field. Do not use Notes to document file changes (use Details for that).
+
+   Suggest that the user run `git commit` to checkpoint this step before continuing. Do NOT automatically proceed to the next step — wait for the user to run `/workflow-implement-design` again or ask to continue.
 
 7. When all steps are `completed`:
    - Set the frontmatter `status` to `completed`
@@ -35,24 +49,11 @@ description: "Execute the next pending step in a design's implementation plan. T
      ```
    - Inform the user the design is complete.
 
-## Step Format
+## Modification Rules
 
-Each step in PLAN.md must follow this structure:
+The step format is defined by workflow-plan-design and already present in PLAN.md. Only these fields may be modified:
 
-```markdown
-### Step N: <title>
-
-- **Status**: pending | in-progress | completed
-- **Description**: <what this step accomplishes>    # immutable — do not modify
-- **Details**:
-  - File: `<file>` — <brief change description>    # can supplement with actual changes
-  - File: `<file>` — <brief change description>
-- **Notes**:                                         # optional, can append observations
-  - <implementation notes, warnings, or context>
-```
-
-**Modification rules**:
 - **Status**: Always editable (pending → in-progress → completed)
-- **Details**: Can be supplemented with actual file changes; never remove original entries
-- **Notes**: Can be appended; never modify existing notes
-- **Description**: Never modify — if the description is wrong, stop and ask user to re-run plan-design
+- **Details**: Supplement with actual file changes if implementation differed from plan; never remove original entries
+- **Notes**: Append observations, warnings, or context; never modify existing notes
+- **Description**: Never modify — if the description is wrong, stop and ask the user to re-run `/workflow-plan-design`
